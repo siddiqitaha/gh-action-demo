@@ -6,6 +6,8 @@ jobs:
   info:
     runs-on: ubuntu-latest
     steps:
-      - name: Github Issues Information
-        run: echo "${{ github.event.issue.body }}"
-  
+    - name: Print Issue Title and Body
+      run: |
+        echo "${{ github.event.issue. }}"
+        echo "${{ github.event.issue.body }}"
+      
