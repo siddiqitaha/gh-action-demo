@@ -1,0 +1,32 @@
+name: Github Workflow Example
+on: [push, workflow_dispatch]
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+      - run: npm ci
+      - run: npm install
+      - run: npm run build
+      - name: Generate Artifcats
+        uses: actions/upload-artifact@v3
+        with:
+            name: dist-files
+            path: dist
+
+  info:
+    needs: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get Builds
+      uses: actions/download-artifact@v3
+      with:
+        name: dist-files
+    - name: Output Folder
+      run: ls -la
+    - name: Deploy
+      run: echo "Deploying..."
