@@ -16,7 +16,7 @@ jobs:
       - name: NPM Build
         run: npm run build
       - name: Publish JS filename
-        run: find/dist/assets/*.js -type f -execdir echo '{}' ';'
+        run: find dist/assets/*.js -type f -execdir echo '{}' ';'
       - name: Generate Artifcats
         uses: actions/upload-artifact@v3
         with:

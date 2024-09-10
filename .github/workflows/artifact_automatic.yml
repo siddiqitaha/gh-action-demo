@@ -19,7 +19,7 @@ jobs:
         run: npm run build
       - name: Publish JS filename
         id: publish
-        run: find/dist/assets/*.js -type f -execdir echo 'custom-file={}' >> $GITHUB_OUTPUT ';'
+        run: find dist/assets/*.js -type f -execdir echo 'custom-file={}' >> $GITHUB_OUTPUT ';'
       - name: Generate Artifcats
         uses: actions/upload-artifact@v3
         with:
@@ -36,5 +36,7 @@ jobs:
         name: dist-files
     - name: Output Folder
       run: ls -la
+    - name: Print Output Filename
+      run: echo "${{ needs.Build.outputs.script-file }}"
     - name: Deploy
       run: echo "Deploying..."
