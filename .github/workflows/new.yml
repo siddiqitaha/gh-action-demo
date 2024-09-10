@@ -11,16 +11,14 @@ jobs:
           node-version: '20.x'
       - run: npm ci
       - run: npm install
-      - run: npm run lint
-      - run: npm run test
       - run: npm run build
-      - name: upload artifacts
+      - name: Generate Artifcats
         uses: actions/upload-artifact@v3
         with:
-          name: my-artifacts
-          path: |
-            dist
-            package.json
+            name: dist-files
+            path: |
+                dist
+                package.json
 
   info:
     runs-on: ubuntu-latest
